@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(17,24,39,0.02);
+}
+
+.compare .row {
+  grid-template-columns: 180px repeat(2, 1fr);
+}
+
+.label {
+  font-weight: 700;
+  color: rgba(17,24,39,0.7);
+}
+
+.value {
+  font-weight: 600;
+}

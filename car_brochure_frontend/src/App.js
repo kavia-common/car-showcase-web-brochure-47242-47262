@@ -1,48 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useMemo, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
+import './index.css';
+import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import HomePage from './pages/Home';
+import ModelsPage from './pages/Models';
+import ComparePage from './pages/Compare';
+import { ThemeProvider } from './theme/ThemeContext';
+import { AppProvider } from './state/AppContext';
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * App
+ * The main application shell that sets up routing, theme, and global state providers.
+ */
 function App() {
-  const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
 
-  // Effect to apply theme to document element
+  // Ensure initial mount for transitions
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    setMounted(true);
+  }, []);
 
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
+  const appShellStyle = useMemo(
+    () => ({
+      minHeight: '100vh',
+      background:
+        'linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(249, 250, 251, 1) 100%)',
+      transition: 'background 300ms ease',
+    }),
+    []
+  );
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <AppProvider>
+        <div style={appShellStyle} className={mounted ? 'app-mounted' : ''}>
+          <Router>
+            <Navbar />
+            <main role="main" aria-label="Main content" style={{ paddingTop: 72 }}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/models" element={<ModelsPage />} />
+                <Route path="/compare" element={<ComparePage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </main>
+            <Footer />
+          </Router>
+        </div>
+      </AppProvider>
+    </ThemeProvider>
   );
 }
 

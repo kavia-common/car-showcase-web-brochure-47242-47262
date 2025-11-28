@@ -1,0 +1,79 @@
+.frame {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(17,24,39,0.06);
+}
+
+.scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.item {
+  margin: 0;
+  height: 420px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  scroll-snap-align: center;
+  position: relative;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.controls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+}
+
+.controls > .btn {
+  pointer-events: all;
+}
+
+.thumbs {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.thumb {
+  border: 1px solid rgba(17,24,39,0.08);
+  border-radius: 10px;
+  background: var(--color-surface);
+  padding: 2px;
+  cursor: pointer;
+}
+
+.thumb img {
+  width: 72px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.thumbActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25) inset;
+}

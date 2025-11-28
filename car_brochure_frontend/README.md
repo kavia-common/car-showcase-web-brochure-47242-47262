@@ -1,82 +1,58 @@
-# Lightweight React Template for KAVIA
+# Ocean Motors – Interactive Car Brochure (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A responsive, interactive brochure for exploring car models, specs, media, and customization.
 
-## Features
+## Highlights
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Ocean Professional theme (blue/amber accents, subtle shadows, rounded corners)
+- Pages/Routes: Home (/), Models (/models), Compare (/compare)
+- Components: Navbar (sticky), Hero (gradient overlay), Gallery (snap carousel), SpecsPanel (compare support), Customizer (colors/trims/wheels), Footer
+- Mock data for 3 models; last selected model persisted in localStorage
+- Accessibility: alt text, focusable controls, keyboard-friendly carousel
+- Performance: lazy images, responsive `srcSet`, code-splitting ready structure
+- API placeholder reading `REACT_APP_API_BASE` for future integration
 
 ## Getting Started
 
-In the project directory, you can run:
+- `npm start` – Development server (http://localhost:3000)
+- `npm run build` – Production build
+- `npm test` – Tests (basic example included)
 
-### `npm start`
+## Theme
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Theme tokens are defined in:
+- `src/App.css` (CSS variables and utilities)
+- `src/theme/theme.js` (exported color palette and gradient)
+- `src/theme/ThemeContext.js` (provider for theme mode toggling)
 
-### `npm test`
+Key colors:
+- primary: `#2563EB`
+- secondary/success: `#F59E0B`
+- error: `#EF4444`
+- background: `#f9fafb`
+- surface: `#ffffff`
+- text: `#111827`
 
-Launches the test runner in interactive watch mode.
+## Structure
 
-### `npm run build`
+- `src/pages/Home.js` – Hero, gallery, specs, customizer
+- `src/pages/Models.js` – Card list with model selection
+- `src/pages/Compare.js` – Side-by-side selector and specs
+- `src/components/*` – Individual UI components
+- `src/data/models.js` – Mock dataset
+- `src/state/AppContext.js` – Selection state with persistence
+- `src/api/client.js` – API placeholder (safe if env is not set)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Environment
 
-## Customization
+Optional variables:
+- `REACT_APP_API_BASE` – Base URL for future API calls
+- Other REACT_APP_* vars are accepted but not required.
 
-### Colors
+The app does not require a backend to run.
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+## Future Integration
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+- Replace `src/api/client.js` logic to use real endpoints under `REACT_APP_API_BASE`.
+- Extend `AppContext` with fetched data or caching as needed.
 
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
